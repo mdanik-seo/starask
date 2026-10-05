@@ -150,115 +150,27 @@
     document.body.appendChild(a); a.click(); a.remove();
   }
 
-  // ---- Business name search (Google Places Autocomplete) ----
-  // Turns on only when assets/config.js sets a Maps API key. Without a key the Place ID box is used.
-  // Cost note: each lookup is one Autocomplete Request (10,000 free per month on Google's pricing);
-  // typing is debounced and needs 3+ characters, so a typical search uses a handful of requests.
-  var mapsPromise = null;
-  function loadPlaces(key) {
-    if (mapsPromise) return mapsPromise;
-    mapsPromise = new Promise(function (resolve, reject) {
-      if (window.google && window.google.maps && window.google.maps.importLibrary) {
-        window.google.maps.importLibrary('places').then(resolve, reject); return;
-      }
-      var cb = '__staraskMapsReady';
-      window[cb] = function () { window.google.maps.importLibrary('places').then(resolve, reject); };
-      var s = document.createElement('script');
-      s.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(key) +
-              '&v=weekly&loading=async&libraries=places&callback=' + cb;
-      s.async = true;
-      s.onerror = function () { reject(new Error('Maps could not load')); };
-      document.head.appendChild(s);
-    });
-    return mapsPromise;
-  }
-
+  // ---- Business name search: assets/places.js (live with a Maps key, or ?demo=1) ----
   function setupSearch(root, onPick) {
-    var cfg = window.STARASK_CONFIG || {};
-    if (!cfg.mapsApiKey) return;
+    var P = window.StarAskPlaces;
+    if (!P || P.mode() === 'off') return; // no key: keep the Place ID box
     var box = root.querySelector('[data-sa="search"]');
-    var input = root.querySelector('[data-sa="search-input"]');
-    var list = root.querySelector('[data-sa="results"]');
-    var picked = root.querySelector('[data-sa="picked"]');
     var manual = root.querySelector('[data-sa="manual"]');
-
-    loadPlaces(cfg.mapsApiKey).then(function (places) {
-      box.hidden = false;
+    P.attachSearch({
+      box: box,
+      input: root.querySelector('[data-sa="search-input"]'),
+      list: root.querySelector('[data-sa="results"]'),
+      picked: root.querySelector('[data-sa="picked"]'),
+      onPick: onPick,
+      onFail: function () { manual.hidden = false; }
+    }).then(function () {
       manual.hidden = true;
       var toggle = document.createElement('button');
       toggle.type = 'button'; toggle.className = 'linkish';
-      toggle.textContent = 'Can’t find it? Enter a Place ID instead';
+      toggle.textContent = 'Can\u2019t find it? Enter a Place ID instead';
       toggle.addEventListener('click', function () { manual.hidden = false; toggle.hidden = true; });
       box.appendChild(toggle);
-
-      var token = new places.AutocompleteSessionToken();
-      var timer = null, seq = 0, items = [], active = -1;
-
-      function close() { list.hidden = true; input.setAttribute('aria-expanded', 'false'); active = -1; }
-      function show(sugs) {
-        list.innerHTML = ''; items = sugs;
-        if (!sugs.length) {
-          var li = document.createElement('li'); li.className = 'empty';
-          li.textContent = 'No matches. Try adding the city.'; list.appendChild(li);
-        }
-        sugs.forEach(function (s, i) {
-          var li = document.createElement('li');
-          li.setAttribute('role', 'option'); li.id = 'sa-opt-' + i;
-          var main = document.createElement('strong'); main.textContent = s.main;
-          var sub = document.createElement('span'); sub.textContent = s.sub;
-          li.appendChild(main); li.appendChild(sub);
-          li.addEventListener('mousedown', function (e) { e.preventDefault(); choose(i); });
-          list.appendChild(li);
-        });
-        list.hidden = false; input.setAttribute('aria-expanded', 'true');
-      }
-      function highlight(i) {
-        var lis = list.querySelectorAll('[role=option]');
-        lis.forEach(function (li, j) { li.setAttribute('aria-selected', String(j === i)); });
-        active = i;
-        if (lis[i]) input.setAttribute('aria-activedescendant', lis[i].id);
-      }
-      function choose(i) {
-        var s = items[i]; if (!s) return;
-        close();
-        input.value = s.main + (s.sub ? ', ' + s.sub : '');
-        picked.hidden = false; picked.textContent = 'Selected: ' + s.main;
-        token = new places.AutocompleteSessionToken(); // a pick ends the session
-        onPick(s.placeId, s.main);
-      }
-      function query(text) {
-        var my = ++seq;
-        places.AutocompleteSuggestion.fetchAutocompleteSuggestions({ input: text, sessionToken: token, language: 'en-US' })
-          .then(function (res) {
-            if (my !== seq) return; // a newer search is running
-            var out = [];
-            (res.suggestions || []).forEach(function (sg) {
-              var p = sg.placePrediction; if (!p) return;
-              out.push({
-                placeId: p.placeId,
-                main: p.mainText ? p.mainText.text : String(p.text),
-                sub: p.secondaryText ? p.secondaryText.text : ''
-              });
-            });
-            show(out.slice(0, 6));
-          })
-          .catch(function () { if (my === seq) { close(); manual.hidden = false; } });
-      }
-      input.addEventListener('input', function () {
-        clearTimeout(timer);
-        var v = input.value.trim();
-        if (v.length < 3) { close(); return; }
-        timer = setTimeout(function () { query(v); }, 300);
-      });
-      input.addEventListener('keydown', function (e) {
-        if (list.hidden) return;
-        if (e.key === 'ArrowDown') { e.preventDefault(); highlight(Math.min(active + 1, items.length - 1)); }
-        else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(Math.max(active - 1, 0)); }
-        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); choose(active); }
-        else if (e.key === 'Escape') { close(); }
-      });
-      input.addEventListener('blur', function () { setTimeout(close, 120); });
-    }).catch(function () { /* keep the Place ID box */ });
+    }).catch(function () { box.hidden = true; manual.hidden = false; });
   }
 
   function mount(root, options) {
@@ -269,6 +181,13 @@
     var linkEl = $('[data-sa="link"]'), msgEl = $('[data-sa="message"]'), status = $('[data-sa="status"]');
     var canvas = $('[data-sa="card"]');
     var theme = 'sunny', current = '';
+
+    // Links from other StarAsk pages (e.g. the audit) can pass ?placeid=...&name=...
+    var qs = new URLSearchParams(location.search);
+    if (validPlaceId(qs.get('placeid') || '')) {
+      idIn.value = qs.get('placeid');
+      if (qs.get('name')) nameIn.value = qs.get('name').slice(0, 80);
+    }
 
     function render() {
       var id = (idIn.value || '').trim();

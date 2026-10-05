@@ -8,7 +8,8 @@ ROOT = pathlib.Path(__file__).parent
 TODAY = datetime.date.today().isoformat()
 
 NAV = [("/review-link-generator/", "Review link"), ("/review-qr-code/", "QR code"), ("/review-card/", "Review card"),
-       ("/review-request-templates/", "Templates"), ("/get-more-google-reviews/", "Guide")]
+       ("/review-request-templates/", "Templates"), ("/google-business-profile-audit/", "Audit"),
+       ("/get-more-google-reviews/", "Guide")]
 
 # Review request templates. {name} and {link} are filled in the browser from the tool above.
 TEMPLATES = [
@@ -176,6 +177,29 @@ TOOL = """
   </div>
 </div>"""
 
+AUDIT = """
+<div class="audit" id="audit" data-rel="{rel}">
+  <div class="panel">
+    <p class="demo-note" data-au="demo" hidden><strong>Sample mode.</strong> Search shows made-up businesses so you can see how the audit works.</p>
+    <div class="field search" data-au="search" hidden>
+      <label for="au-input">Find your business</label>
+      <div class="combo">
+        <input type="text" id="au-input" data-au="input" placeholder="Business name and city, e.g. Joe's Pizza Austin"
+               autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="au-results">
+        <ul class="results" id="au-results" data-au="results" role="listbox" hidden></ul>
+      </div>
+      <p class="hint">Pick your business from the list. The audit runs right away.</p>
+    </div>
+    <div data-au="off" hidden>
+      <h3>The live audit opens soon</h3>
+      <p class="muted" style="margin-top:6px">Until then, try it on a sample business, or work through the free checklist.</p>
+      <div class="row" style="margin-top:14px"><a class="btn" href="?demo=1">See a sample audit</a><a class="btn ghost" href="{rel}google-business-profile-checklist/">Open the checklist</a></div>
+    </div>
+    <p class="status" data-au="status" role="status"></p>
+  </div>
+  <div class="audit-out" data-au="out" aria-live="polite" hidden></div>
+</div>"""
+
 PAGES = [
     {
         "path": "",
@@ -266,6 +290,33 @@ PAGES = [
         "extra_js": TEMPLATES_JS,
     },
     {
+        "path": "google-business-profile-audit/",
+        "tool": "audit",
+        "title": "Free Google Business Profile Audit Tool (Instant Score) | StarAsk",
+        "desc": "Audit any Google Business Profile in seconds. Get a score out of 100 for reviews, rating, photos, hours, and contact details, with the fixes that matter most.",
+        "eyebrow": "Free profile audit",
+        "h1": "Free Google Business Profile audit",
+        "intro": "Search for a business and get an instant score out of 100, with the fixes that will make the biggest difference listed first. Works for your own profile or a client's.",
+        "sections": [
+            ("What the audit checks", "<ul>"
+                "<li><strong>Reviews:</strong> how many, the star rating, and how recent the newest one is</li>"
+                "<li><strong>Photos:</strong> whether there are enough to show what you do</li>"
+                "<li><strong>Basics:</strong> open status, hours, phone number, website, and categories</li></ul>"
+                "<p>Reviews carry the most weight because they affect both where you rank in Maps and whether people choose you once they find you.</p>"),
+            ("How the score works", "<p>Each check earns full points when it meets the bar, half when it is close, and none when it is missing. Reviews count for half the score (number 20, rating 15, recency 15); photos, hours, phone, website, open status, and categories make up the rest.</p>"
+                "<ol class=\"steps\"><li><span><strong>80 to 100:</strong> a strong profile. Keep reviews and photos coming.</span></li>"
+                "<li><span><strong>50 to 79:</strong> the basics are there, but you are leaving customers on the table.</span></li>"
+                "<li><span><strong>Under 50:</strong> fix the red items first. They are usually quick.</span></li></ol>"),
+            ("What the audit can't see", "<p>Some parts of a profile are not public: your business description, Google posts, replies to reviews, and Q&amp;A. Check those inside your Business Profile with the <a href=\"../google-business-profile-checklist/\">free checklist</a>.</p>"),
+        ],
+        "faq": [
+            ("Is the Google Business Profile audit free?", "Yes. Search for any business and see its score and fixes for free, with no sign-up."),
+            ("Can I audit a competitor or a client?", "Yes. The audit uses public profile information, so it works for any business on Google Maps."),
+            ("How many reviews should a business have?", "There is no fixed number. The audit gives full points at 100 reviews, but the real target is to match or beat the businesses that rank near you."),
+            ("Why is my score different from what I see in my dashboard?", "The audit only reads what Google shows the public. Private items like your description and posts are not included in the score."),
+        ],
+    },
+    {
         "path": "get-more-google-reviews/",
         "tool": False,
         "title": "How to Get More Google Reviews: 9 Methods That Work | StarAsk",
@@ -305,7 +356,7 @@ PAGES = [
         "intro": "Work through this list to make sure your profile is complete. Your ticks are saved in this browser, so you can come back later.",
         "sections": [
             ("The checklist", checklist_html()),
-            ("What to do next", "<p>Once the basics are done, the biggest ongoing lever is a steady stream of new reviews. <a href=\"../review-link-generator/\">Get your review link</a> and <a href=\"../review-card/\">print a QR card</a> to start.</p>"),
+            ("What to do next", "<p>Want a score instead of ticking boxes? Run the <a href=\"../google-business-profile-audit/\">free profile audit</a>. Once the basics are done, the biggest ongoing lever is a steady stream of new reviews. <a href=\"../review-link-generator/\">Get your review link</a> and <a href=\"../review-card/\">print a QR card</a> to start.</p>"),
         ],
         "faq": [
             ("How often should I update my profile?", "Check hours before every holiday, add photos monthly, and post at least weekly."),
@@ -324,7 +375,7 @@ PAGES = [
         "intro": "Short version: the free tools run in your browser, and we don't collect the business details you type into them.",
         "sections": [
             ("The free tools", "<p>The review link, QR code, review card, templates, and checklist are built in your browser. The business name and Place ID you enter are not sent to StarAsk. Checklist ticks are saved only in your own browser and you can clear them by clearing your browser data.</p>"),
-            ("Business search", "<p>When you search for your business by name, your search text is sent to Google Maps Platform to find matching places. Google handles that request under the <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Privacy Policy</a>.</p>"),
+            ("Business search", "<p>When you search for a business by name or run the profile audit, your search text and the chosen business are sent to Google Maps Platform to find matching places. Google handles that request under the <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Privacy Policy</a>.</p>"),
             ("Cookies and analytics", "<p>StarAsk does not set advertising cookies. If we add visit analytics, this page will say which service we use and what it records.</p>"),
             ("Paid plans", "<p>Paid plans are not available yet. When they launch, this page will explain what account and customer data we store, how long we keep it, and how to delete it.</p>"),
             ("Changes", "<p>We will update this page when anything here changes, and show the date of the latest update below.</p><p class=\"hint\">Last updated: " + TODAY + "</p>"),
@@ -350,17 +401,25 @@ def render(p):
     related = "".join(
         f'<a href="{rel}{x["path"]}"><strong>{esc(x["h1"])}</strong><span>{esc(x["desc"][:90])}&hellip;</span></a>'
         for x in PAGES if x["path"] != p["path"] and not x.get("utility"))
-    has_tool = p.get("tool", True)
+    kind = p.get("tool", True)
+    has_tool = kind is True
+    is_app = kind is True or kind == "audit"
     faq_block = f'<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
     main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": url,
                     "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": p["desc"]}
-                   if has_tool else
+                   if is_app else
                    {"@context": "https://schema.org", "@type": "Article", "headline": p["h1"], "description": p["desc"],
                     "url": url, "dateModified": TODAY, "publisher": {"@type": "Organization", "name": "StarAsk"}})
-    tool_html = TOOL if has_tool else ""
-    scripts = (f'<script src="{rel}assets/config.js"></script>\n<script src="{rel}assets/qrcode.js"></script>\n<script src="{rel}assets/tool.js"></script>\n'
-               "<script>StarAsk.mount(document.getElementById('tool'));</script>") if has_tool else ""
+    tool_html = TOOL if has_tool else AUDIT.replace("{rel}", rel) if kind == "audit" else ""
+    base_js = f'<script src="{rel}assets/config.js"></script>\n<script src="{rel}assets/places.js"></script>\n'
+    if has_tool:
+        scripts = (base_js + f'<script src="{rel}assets/qrcode.js"></script>\n<script src="{rel}assets/tool.js"></script>\n'
+                   "<script>StarAsk.mount(document.getElementById('tool'));</script>")
+    elif kind == "audit":
+        scripts = base_js + f'<script src="{rel}assets/audit.js"></script>\n<script>StarAskAudit.mount(document.getElementById(\'audit\'));</script>'
+    else:
+        scripts = ""
     scripts += p.get("extra_js", "")
     schema = [
         main_schema,
