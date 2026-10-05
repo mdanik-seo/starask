@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Google Review QR Code Generator (Print-Ready) | StarAsk</title>
+<meta name="description" content="Make a Google review QR code that opens your review box in one scan. Download a high-resolution PNG or a print-ready review card. Free.">
+<link rel="canonical" href="https://getstarask.com/review-qr-code/">
+<meta property="og:title" content="Free Google Review QR Code Generator (Print-Ready) | StarAsk">
+<meta property="og:description" content="Make a Google review QR code that opens your review box in one scan. Download a high-resolution PNG or a print-ready review card. Free.">
+<meta property="og:url" content="https://getstarask.com/review-qr-code/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": "https://getstarask.com/review-qr-code/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Make a Google review QR code that opens your review box in one scan. Download a high-resolution PNG or a print-ready review card. Free."}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does a Google review QR code expire?", "acceptedAnswer": {"@type": "Answer", "text": "No. The code holds a fixed link to your review box, so it keeps working as long as your Google Business Profile exists."}}, {"@type": "Question", "name": "What size should I print it?", "acceptedAnswer": {"@type": "Answer", "text": "At least 1 inch (2.5 cm) wide. For a counter sign, 2 to 3 inches is easier to scan from a distance."}}, {"@type": "Question", "name": "Can customers scan it with any phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The built-in camera on modern iPhones and Android phones reads QR codes without an extra app."}}]}]</script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="../"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
+  <nav aria-label="Tools"><a href="../review-link-generator/">Review link</a><a href="../review-qr-code/" aria-current="page">QR code</a><a href="../review-card/">Review card</a><a href="../review-request-templates/">Templates</a><a href="../get-more-google-reviews/">Guide</a></nav>
+</header>
+<main>
+<div class="hero">
+  <span class="eyebrow">Google review QR code</span>
+  <h1>Free Google review QR code generator</h1>
+  <p>Make a QR code that opens your Google review box with one scan. Download it as a high-resolution image, or print it on a ready-made card.</p>
+</div>
+
+<div class="tool" id="tool">
+  <div class="panel toolform">
+    <div class="field">
+      <label for="sa-name">Business name</label>
+      <input type="text" id="sa-name" data-sa="name" value="Harbor Street Coffee" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="sa-placeid">Google Place ID</label>
+      <input type="text" id="sa-placeid" class="mono" data-sa="placeid" value="ChIJN1t_tDeuEmsRUsoyG83frY4" autocomplete="off" spellcheck="false">
+      <details class="howto">
+        <summary>How do I find my Place ID?</summary>
+        <ol>
+          <li>Open Google&rsquo;s free <a href="https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder" target="_blank" rel="noopener">Place ID Finder</a>.</li>
+          <li>Type your business name and pick it from the list.</li>
+          <li>Copy the ID that appears on the map (it starts with &ldquo;ChIJ&rdquo;) and paste it here.</li>
+        </ol>
+      </details>
+    </div>
+    <div class="row"><button type="button" data-sa="go">Create my review link</button></div>
+    <p class="err" data-sa="error" hidden></p>
+    <div class="out" data-sa="output">
+      <div class="linkbox" data-sa="link"></div>
+      <div class="row">
+        <button type="button" class="ghost" data-sa="copy-link">Copy link</button>
+        <button type="button" class="ghost" data-sa="copy-msg">Copy text message</button>
+        <button type="button" class="ghost" data-sa="dl-qr">Download QR code</button>
+      </div>
+      <p class="status" data-sa="status" role="status"></p>
+      <div>
+        <label>Ready-to-send message</label>
+        <div class="msg" data-sa="message"></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel cardside">
+    <h3 class="no-print">Your printable review card</h3>
+    <canvas data-sa="card" width="1200" height="1800" aria-label="Printable review card with QR code"></canvas>
+    <div class="tabs no-print" role="group" aria-label="Card color">
+      <button type="button" data-sa-theme="sunny" aria-pressed="true">Sunny</button>
+      <button type="button" data-sa-theme="ink" aria-pressed="false">Ink</button>
+      <button type="button" data-sa-theme="paper" aria-pressed="false">Paper</button>
+    </div>
+    <div class="row no-print" style="justify-content:center">
+      <button type="button" data-sa="dl-card">Download card</button>
+      <button type="button" class="ghost" data-sa="print">Print</button>
+    </div>
+    <p class="hint no-print">Prints well at 4&times;6 in. Put it by the register, on tables, or in the bag.</p>
+  </div>
+</div>
+<div class="content">
+<section><h2>How to make your Google review QR code</h2><ol class="steps"><li><span>Find your Place ID with Google's Place ID Finder (steps are in the form above).</span></li><li><span>Paste it in and press <em>Create my review link</em>.</span></li><li><span>Press <em>Download QR code</em> for a 1000&times;1000 image, or download the full card.</span></li><li><span>Scan it with your own phone before you print, to make sure it opens your business.</span></li></ol></section><section><h2>Where to put the QR code</h2><ul><li>On the counter or register, at eye level</li><li>On table tents and menus</li><li>On receipts and invoices</li><li>On the bag, box, or packing slip</li><li>On your business card and van</li></ul></section><section><h2>Tips for more scans</h2><p>Keep the code at least 1 inch (2.5 cm) wide on paper, print it in black on white, and add one short line that says why, such as &ldquo;Loved your visit? Scan to leave us a review.&rdquo; Codes with a clear reason get far more scans than a bare square.</p></section>
+<section><h2>Questions</h2><div class="faq"><details><summary>Does a Google review QR code expire?</summary><p>No. The code holds a fixed link to your review box, so it keeps working as long as your Google Business Profile exists.</p></details><details><summary>What size should I print it?</summary><p>At least 1 inch (2.5 cm) wide. For a counter sign, 2 to 3 inches is easier to scan from a distance.</p></details><details><summary>Can customers scan it with any phone?</summary><p>Yes. The built-in camera on modern iPhones and Android phones reads QR codes without an extra app.</p></details></div></section>
+<section><h2>More free tools and guides</h2><div class="related"><a href="../"><strong>Get more Google reviews with one link, one QR code, one card</strong><span>Create a direct Google review link, a QR code, and a printable review card for your busine&hellip;</span></a><a href="../review-link-generator/"><strong>Google review link generator</strong><span>Generate a direct Google review link that opens the review box for your business. Copy it &hellip;</span></a><a href="../review-card/"><strong>Free printable Google review card</strong><span>Design a printable Google review card with your business name and QR code. Choose a color,&hellip;</span></a><a href="../review-request-templates/"><strong>Google review request templates you can copy</strong><span>Copy-ready Google review request templates for text messages, emails, receipts, and social&hellip;</span></a><a href="../get-more-google-reviews/"><strong>How to get more Google reviews</strong><span>A practical guide to getting more Google reviews for a local business: when to ask, where &hellip;</span></a><a href="../google-business-profile-checklist/"><strong>Google Business Profile checklist</strong><span>A free interactive Google Business Profile checklist. Tick off basics, hours, photos, revi&hellip;</span></a></div></section>
+</div>
+</main>
+<footer class="foot">
+  <span>&copy; 2026 StarAsk</span>
+  <span>StarAsk is not affiliated with or endorsed by Google.</span>
+</footer>
+</div>
+<script src="../assets/qrcode.js"></script>
+<script src="../assets/tool.js"></script>
+<script>StarAsk.mount(document.getElementById('tool'));</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Google Review Link, QR Code &amp; Card Generator | StarAsk</title>
+<meta name="description" content="Create a direct Google review link, a QR code, and a printable review card for your business in under a minute. Free, no sign-up.">
+<link rel="canonical" href="https://getstarask.com/">
+<meta property="og:title" content="Free Google Review Link, QR Code &amp; Card Generator | StarAsk">
+<meta property="og:description" content="Create a direct Google review link, a QR code, and a printable review card for your business in under a minute. Free, no sign-up.">
+<meta property="og:url" content="https://getstarask.com/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": "https://getstarask.com/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create a direct Google review link, a QR code, and a printable review card for your business in under a minute. Free, no sign-up."}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is StarAsk free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The review link, QR code, and printable card are free with no sign-up."}}, {"@type": "Question", "name": "Does the link work on phones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review."}}, {"@type": "Question", "name": "Can I ask only happy customers for reviews?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google's rules don't allow filtering who you ask. Send the same link to every customer and let them review honestly."}}]}]</script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="./"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
+  <nav aria-label="Tools"><a href="review-link-generator/">Review link</a><a href="review-qr-code/">QR code</a><a href="review-card/">Review card</a><a href="review-request-templates/">Templates</a><a href="get-more-google-reviews/">Guide</a></nav>
+</header>
+<main>
+<div class="hero">
+  <span class="eyebrow">Free review tools for local businesses</span>
+  <h1>Get more Google reviews with one link, one QR code, one card</h1>
+  <p>Customers who are happy rarely leave a review on their own. Give them a link that opens the review box directly, a QR code for your counter, and a card that does the asking for you.</p>
+</div>
+
+<div class="tool" id="tool">
+  <div class="panel toolform">
+    <div class="field">
+      <label for="sa-name">Business name</label>
+      <input type="text" id="sa-name" data-sa="name" value="Harbor Street Coffee" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="sa-placeid">Google Place ID</label>
+      <input type="text" id="sa-placeid" class="mono" data-sa="placeid" value="ChIJN1t_tDeuEmsRUsoyG83frY4" autocomplete="off" spellcheck="false">
+      <details class="howto">
+        <summary>How do I find my Place ID?</summary>
+        <ol>
+          <li>Open Google&rsquo;s free <a href="https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder" target="_blank" rel="noopener">Place ID Finder</a>.</li>
+          <li>Type your business name and pick it from the list.</li>
+          <li>Copy the ID that appears on the map (it starts with &ldquo;ChIJ&rdquo;) and paste it here.</li>
+        </ol>
+      </details>
+    </div>
+    <div class="row"><button type="button" data-sa="go">Create my review link</button></div>
+    <p class="err" data-sa="error" hidden></p>
+    <div class="out" data-sa="output">
+      <div class="linkbox" data-sa="link"></div>
+      <div class="row">
+        <button type="button" class="ghost" data-sa="copy-link">Copy link</button>
+        <button type="button" class="ghost" data-sa="copy-msg">Copy text message</button>
+        <button type="button" class="ghost" data-sa="dl-qr">Download QR code</button>
+      </div>
+      <p class="status" data-sa="status" role="status"></p>
+      <div>
+        <label>Ready-to-send message</label>
+        <div class="msg" data-sa="message"></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel cardside">
+    <h3 class="no-print">Your printable review card</h3>
+    <canvas data-sa="card" width="1200" height="1800" aria-label="Printable review card with QR code"></canvas>
+    <div class="tabs no-print" role="group" aria-label="Card color">
+      <button type="button" data-sa-theme="sunny" aria-pressed="true">Sunny</button>
+      <button type="button" data-sa-theme="ink" aria-pressed="false">Ink</button>
+      <button type="button" data-sa-theme="paper" aria-pressed="false">Paper</button>
+    </div>
+    <div class="row no-print" style="justify-content:center">
+      <button type="button" data-sa="dl-card">Download card</button>
+      <button type="button" class="ghost" data-sa="print">Print</button>
+    </div>
+    <p class="hint no-print">Prints well at 4&times;6 in. Put it by the register, on tables, or in the bag.</p>
+  </div>
+</div>
+<div class="content">
+<section><h2>Why a direct review link works</h2><p>Most customers give up if they have to search for your business, scroll to reviews, and find the button. A direct link skips all of that. One tap opens the review box with your business already selected, so the effort drops to a few seconds.</p></section><section><h2>Three ways to use it</h2><ol class="steps"><li><span><strong>Text or email it</strong> right after a job or visit, while the experience is fresh.</span></li><li><span><strong>Print the QR card</strong> and put it where people wait: the register, tables, or the checkout bag.</span></li><li><span><strong>Add the link</strong> to your receipts, email signature, and thank-you pages.</span></li></ol></section>
+<section><h2>Questions</h2><div class="faq"><details><summary>Is StarAsk free?</summary><p>Yes. The review link, QR code, and printable card are free with no sign-up.</p></details><details><summary>Does the link work on phones?</summary><p>Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review.</p></details><details><summary>Can I ask only happy customers for reviews?</summary><p>No. Google&#x27;s rules don&#x27;t allow filtering who you ask. Send the same link to every customer and let them review honestly.</p></details></div></section>
+<section><h2>More free tools and guides</h2><div class="related"><a href="review-qr-code/"><strong>Free Google review QR code generator</strong><span>Make a Google review QR code that opens your review box in one scan. Download a high-resol&hellip;</span></a><a href="review-link-generator/"><strong>Google review link generator</strong><span>Generate a direct Google review link that opens the review box for your business. Copy it &hellip;</span></a><a href="review-card/"><strong>Free printable Google review card</strong><span>Design a printable Google review card with your business name and QR code. Choose a color,&hellip;</span></a><a href="review-request-templates/"><strong>Google review request templates you can copy</strong><span>Copy-ready Google review request templates for text messages, emails, receipts, and social&hellip;</span></a><a href="get-more-google-reviews/"><strong>How to get more Google reviews</strong><span>A practical guide to getting more Google reviews for a local business: when to ask, where &hellip;</span></a><a href="google-business-profile-checklist/"><strong>Google Business Profile checklist</strong><span>A free interactive Google Business Profile checklist. Tick off basics, hours, photos, revi&hellip;</span></a></div></section>
+</div>
+</main>
+<footer class="foot">
+  <span>&copy; 2026 StarAsk</span>
+  <span>StarAsk is not affiliated with or endorsed by Google.</span>
+</footer>
+</div>
+<script src="assets/qrcode.js"></script>
+<script src="assets/tool.js"></script>
+<script>StarAsk.mount(document.getElementById('tool'));</script>
+</body>
+</html>
