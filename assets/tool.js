@@ -238,5 +238,5 @@
     if (options.focus === 'card') canvas.scrollIntoView({ block: 'nearest' });
   }
 
-  window.StarAsk = { mount: mount, reviewUrl: reviewUrl, validPlaceId: validPlaceId };
+  window.StarAsk = { mount: mount, reviewUrl: reviewUrl, validPlaceId: validPlaceId, drawCard: drawCard };
 })();

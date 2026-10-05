@@ -106,7 +106,7 @@
       if (x.state !== 'good') {
         li.appendChild(el('p', 'muted', x.fix));
         if (x.action) {
-          var a = el('a', null, x.action.text + ' →');
+          var a = el('a', null, x.action.text);
           a.href = rel + x.action.href + (x.action.href === 'review-link-generator/' || x.action.href === 'review-card/' ? linkParams(p) : '');
           li.appendChild(a);
         }

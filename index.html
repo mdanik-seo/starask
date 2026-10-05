@@ -12,51 +12,40 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap">
 <link rel="stylesheet" href="assets/style.css">
-<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": "https://getstarask.com/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create a direct Google review link, a QR code, and a printable review card for your business in under a minute. Free, no sign-up."}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is StarAsk free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The review link, QR code, and printable card are free with no sign-up."}}, {"@type": "Question", "name": "Does the link work on phones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review."}}, {"@type": "Question", "name": "Can I ask only happy customers for reviews?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google's rules don't allow filtering who you ask. Send the same link to every customer and let them review honestly."}}]}]</script>
 </head>
-<body>
+<body class="has-app home">
+<div class="band">
 <div class="wrap">
 <header class="top">
   <a class="brand" href="./"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
   <nav aria-label="Tools"><a href="review-link-generator/">Review link</a><a href="review-qr-code/">QR code</a><a href="review-card/">Review card</a><a href="review-request-templates/">Templates</a><a href="google-business-profile-audit/">Audit</a><a href="get-more-google-reviews/">Guide</a></nav>
 </header>
-<main>
 
 <div class="hero hero-home">
   <div class="hero-copy">
-    <span class="eyebrow">Free review tools for local businesses</span>
-    <h1>Get more Google reviews with one link, one QR code, one card</h1>
-    <p>Customers who are happy rarely leave a review on their own. Give them a link that opens the review box directly, a QR code for your counter, and a card that does the asking for you.</p>
-    <div class="row cta-row">
-      <a class="btn big" href="#tool">Create my review link <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn ghost big" href="google-business-profile-audit/">Audit my profile</a>
-    </div>
-    <ul class="trust">
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Free tools</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>No sign-up</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Works in any country</li>
-    </ul>
-  </div>
-  <div class="mock" aria-hidden="true">
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="screen">
-        <div class="g-top"><span class="g-dot"></span><span class="g-bar"></span></div>
-        <p class="g-name">Harbor Street Coffee</p>
-        <p class="g-sub">Rate and review</p>
-        <div class="g-stars"><span style="--i:0">&#9733;</span><span style="--i:1">&#9733;</span><span style="--i:2">&#9733;</span><span style="--i:3">&#9733;</span><span style="--i:4">&#9733;</span></div>
-        <div class="g-lines"><span></span><span></span><span class="short"></span></div>
-        <div class="g-post">Post</div>
+    <h1>Turn happy customers into Google reviews</h1>
+    <p class="lede">Get a direct review link, a QR code, and a printable counter card for your business. Free, and it takes about a minute.</p>
+    <form class="try" id="try" autocomplete="off">
+      <label for="try-name">Your business name</label>
+      <div class="try-row">
+        <input type="text" id="try-name" maxlength="60" placeholder="Harbor Street Coffee">
+        <button type="submit">Make my card</button>
       </div>
+      <p class="try-note">Free. No sign-up. Works for any business on Google Maps.</p>
+    </form>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <div class="stand" id="stand">
+      <canvas id="hero-card" width="1200" height="1800"></canvas>
+      <span class="shine"></span>
     </div>
-    <div class="mini-card">
-      <p class="mc-name">Harbor Street Coffee</p>
-      <p class="mc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-      <p class="mc-h">Loved your visit?</p>
-      <img src="assets/hero-qr.svg" alt="" width="96" height="96">
-    </div>
-    <div class="toast"><span class="t-ic">&#9733;</span><span><strong>New 5-star review</strong><small>just now</small></span></div>
+    <div class="base"></div>
   </div>
 </div>
+</div>
+</div>
+<main class="wrap">
 
 <div class="tool" id="tool">
   <div class="panel toolform">
@@ -118,52 +107,30 @@
 </div>
 <div class="content">
 
-<section class="how reveal">
+<section class="how">
   <h2>How it works</h2>
   <ol class="how-steps">
-    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><span class="how-n">01</span><h3>Find your business</h3><p>Type your business name, or paste your Google Place ID.</p></li>
-    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span class="how-n">02</span><h3>Get your link and QR code</h3><p>A direct link that opens your review box, plus a sharp QR code.</p></li>
-    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg></span><span class="how-n">03</span><h3>Share it and print it</h3><p>Text it after each visit and put the card by the register.</p></li>
+    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span><h3>Find your business</h3><p>Type your business name, or paste your Google Place ID.</p></li>
+    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h3>Get your link and QR code</h3><p>One link that opens your review box, and a sharp QR code for print.</p></li>
+    <li><span class="how-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg></span><h3>Share it and print it</h3><p>Text the link after each visit and put the card by the register.</p></li>
   </ol>
 </section>
-<section class="reveal">
-  <h2>Everything you need to get more reviews</h2>
-  <div class="bento">
-    <a class="tile t-link" href="review-link-generator/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h3>Review link generator</h3>
-      <p>One tap opens your review box. Paste it into texts, emails, and receipts.</p>
-      <span class="tile-demo linkbox">search.google.com/local/writereview?placeid=ChIJ&hellip;</span>
+<section class="toolset">
+  <h2>Everything for more reviews, in one place</h2>
+  <div class="toolset-grid">
+    <a class="feature" href="google-business-profile-audit/">
+      <span class="score warn" style="--pct:72"><strong>72</strong><span>out of 100</span></span>
+      <span class="feature-copy"><h3>Profile audit</h3><p>Score any Google Business Profile out of 100 and see which fixes matter most. Works for your own business, a competitor, or a client.</p><span class="btn">Audit a profile</span></span>
     </a>
-    <a class="tile t-audit" href="google-business-profile-audit/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1.2"/></svg></span><h3>Profile audit</h3>
-      <p>Score any Google Business Profile out of 100 and see what to fix first.</p>
-      <span class="tile-demo mini-score"><span class="score warn" style="--pct:72"><strong>72</strong><span>out of 100</span></span></span>
-      <span class="tile-demo bars"><span style="--w:90%"></span><span style="--w:60%"></span><span style="--w:35%"></span></span>
-    </a>
-    <a class="tile t-qr" href="review-qr-code/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v.01M14 21h.01M17.5 17.5V21H21"/></svg></span><h3>QR code</h3><p>High-resolution and print-ready.</p>
-    </a>
-    <a class="tile t-card" href="review-card/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M12 7.2l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/><path d="M9 18h6"/></svg></span><h3>Review card</h3><p>A 4&times;6 in card for your counter, in three colors.</p>
-    </a>
-    <a class="tile t-tpl" href="review-request-templates/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"/><path d="M8 8h8M8 11.5h5"/></svg></span><h3>Request templates</h3><p>Texts and emails with your link already in them.</p>
-    </a>
-    <a class="tile t-ck" href="google-business-profile-checklist/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"/><path d="M11 6.5h9M11 12.5h9M11 18.5h9"/></svg></span><h3>Profile checklist</h3><p>20 checks for a complete profile.</p>
-    </a>
-    <a class="tile t-guide" href="get-more-google-reviews/">
-      <span class="tile-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span><h3>Review guide</h3><p>9 ways to get more reviews, within Google&rsquo;s rules.</p>
-    </a>
-  </div>
-</section>
-<section class="reveal"><h2>Why a direct review link works</h2><p>Most customers give up if they have to search for your business, scroll to reviews, and find the button. A direct link skips all of that. One tap opens the review box with your business already selected, so the effort drops to a few seconds.</p></section><section class="reveal"><h2>Three ways to use it</h2><ol class="steps"><li><span><strong>Text or email it</strong> right after a job or visit, while the experience is fresh.</span></li><li><span><strong>Print the QR card</strong> and put it where people wait: the register, tables, or the checkout bag.</span></li><li><span><strong>Add the link</strong> to your receipts, email signature, and thank-you pages.</span></li></ol></section>
-<section class="reveal"><h2>Simple pricing</h2><p class="muted">Every tool on this site is free. Paid plans that ask for reviews automatically are coming soon.</p><div class="plans"><div class="plan"><div class="plan-top"><h3>Free</h3></div><p class="price"><strong>$0</strong><span>forever</span></p><p class="muted">For any business getting started.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Review link and QR code</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Printable review cards</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Profile audit</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Request templates and checklist</li></ul><a class="btn ghost" href="#tool">Start free</a></div><div class="plan featured"><div class="plan-top"><h3>Business</h3><span class="pill warn">Coming soon</span></div><p class="price"><strong>$19</strong><span>/month</span></p><p class="muted">For a business that wants reviews on autopilot.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Free</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Automatic review request emails</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Alerts when a new review comes in</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Your logo on review cards</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Monthly profile score report</li></ul><span class="btn soon" aria-disabled="true">Coming soon</span></div><div class="plan"><div class="plan-top"><h3>Agency</h3><span class="pill warn">Coming soon</span></div><p class="price"><strong>$49</strong><span>/month</span></p><p class="muted">For marketers who manage clients.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Business</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Up to 10 client businesses</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>White-label cards and reports</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Audit reports to share with clients</li></ul><span class="btn ghost soon" aria-disabled="true">Coming soon</span></div></div></section>
-<section class="reveal"><h2>Questions</h2><div class="faq"><details><summary>Is StarAsk free?</summary><p>Yes. The review link, QR code, and printable card are free with no sign-up.</p></details><details><summary>Does the link work on phones?</summary><p>Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review.</p></details><details><summary>Can I ask only happy customers for reviews?</summary><p>No. Google&#x27;s rules don&#x27;t allow filtering who you ask. Send the same link to every customer and let them review honestly.</p></details></div></section>
+    <ul class="tool-list"><li><a href="review-link-generator/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span><strong>Review link generator</strong><span>One tap opens your review box.</span></span></a></li><li><a href="review-qr-code/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v.01M14 21h.01M17.5 17.5V21H21"/></svg></span><span><strong>QR code generator</strong><span>High-resolution and print-ready.</span></span></a></li><li><a href="review-card/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M12 7.2l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/><path d="M9 18h6"/></svg></span><span><strong>Printable review card</strong><span>A 4×6 in card in three colors.</span></span></a></li><li><a href="review-request-templates/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"/><path d="M8 8h8M8 11.5h5"/></svg></span><span><strong>Request templates</strong><span>Texts and emails with your link in them.</span></span></a></li><li><a href="google-business-profile-checklist/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"/><path d="M11 6.5h9M11 12.5h9M11 18.5h9"/></svg></span><span><strong>Profile checklist</strong><span>20 checks for a complete profile.</span></span></a></li><li><a href="get-more-google-reviews/"><span class="tl-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span><span><strong>Review guide</strong><span>9 ways to get more reviews, within Google’s rules.</span></span></a></li></ul></div></section>
+<section><h2>Why a direct review link works</h2><p>Most customers give up if they have to search for your business, scroll to reviews, and find the button. A direct link skips all of that. One tap opens the review box with your business already selected, so the effort drops to a few seconds.</p></section><section><h2>Three ways to use it</h2><ol class="steps"><li><span><strong>Text or email it</strong> right after a job or visit, while the experience is fresh.</span></li><li><span><strong>Print the QR card</strong> and put it where people wait: the register, tables, or the checkout bag.</span></li><li><span><strong>Add the link</strong> to your receipts, email signature, and thank-you pages.</span></li></ol></section>
+<section class="pricing"><h2>Pricing</h2><p class="muted">Every tool on this site is free. Paid plans that ask for reviews automatically are coming soon.</p><div class="plans"><div class="plan"><div class="plan-top"><h3>Free</h3></div><p class="price"><strong>$0</strong><span>forever</span></p><p class="muted">For any business getting started.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Review link and QR code</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Printable review cards</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Profile audit</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Request templates and checklist</li></ul><a class="btn ghost" href="#tool">Start free</a></div><div class="plan featured"><div class="plan-top"><h3>Business</h3><span class="soon-tag">Coming soon</span></div><p class="price"><strong>$19</strong><span>/month</span></p><p class="muted">For a business that wants reviews on autopilot.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Free</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Automatic review request emails</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Alerts when a new review comes in</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Your logo on review cards</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Monthly profile score report</li></ul><span class="btn soon" aria-disabled="true">Coming soon</span></div><div class="plan"><div class="plan-top"><h3>Agency</h3><span class="soon-tag">Coming soon</span></div><p class="price"><strong>$49</strong><span>/month</span></p><p class="muted">For marketers who manage clients.</p><ul><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Business</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Up to 10 client businesses</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>White-label cards and reports</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Audit reports to share with clients</li></ul><span class="btn ghost soon" aria-disabled="true">Coming soon</span></div></div></section>
+<section><h2>Questions</h2><div class="faq"><details><summary>Is StarAsk free?</summary><p>Yes. The review link, QR code, and printable card are free with no sign-up.</p></details><details><summary>Does the link work on phones?</summary><p>Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review.</p></details><details><summary>Can I ask only happy customers for reviews?</summary><p>No. Google&#x27;s rules don&#x27;t allow filtering who you ask. Send the same link to every customer and let them review honestly.</p></details></div></section>
 
 </div>
 </main>
-<footer class="foot">
+<footer class="wrap">
+<div class="foot">
   <div class="foot-brand">
     <a class="brand" href="./"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
     <p>Free Google review tools for local businesses.</p>
@@ -173,18 +140,35 @@
     <div><h4>Guides</h4><a href="get-more-google-reviews/">Get more reviews</a><a href="review-request-templates/">Request templates</a><a href="google-business-profile-checklist/">Profile checklist</a></div>
     <div><h4>StarAsk</h4><a href="privacy/">Privacy</a></div>
   </div>
-  <p class="foot-bottom">&copy; 2026 StarAsk &middot; StarAsk is not affiliated with or endorsed by Google.</p>
-</footer>
+  <p class="foot-bottom"><span>&copy; 2026 StarAsk</span><span>StarAsk is not affiliated with or endorsed by Google.</span></p>
 </div>
+</footer>
 <script src="assets/config.js"></script>
 <script src="assets/places.js"></script>
 <script src="assets/qrcode.js"></script>
 <script src="assets/tool.js"></script>
 <script>StarAsk.mount(document.getElementById('tool'));</script><script>
-(function(){var els=document.querySelectorAll('.reveal');
-if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
-els.forEach(function(e){io.observe(e);});})();
+(function(){
+  var form=document.getElementById('try'), input=document.getElementById('try-name'), c=document.getElementById('hero-card');
+  var demoUrl=StarAsk.reviewUrl('ChIJN1t_tDeuEmsRUsoyG83frY4');
+  function draw(){StarAsk.drawCard(c,{url:demoUrl,name:input.value.trim()||'Harbor Street Coffee',theme:'sunny'});}
+  var t=null; input.addEventListener('input',function(){clearTimeout(t);t=setTimeout(draw,60);});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(draw);}else{draw();}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('sa-name'); if(input.value.trim()){n.value=input.value.trim();n.dispatchEvent(new Event('input'));}
+    document.getElementById('tool').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){(document.getElementById('sa-search').offsetParent?document.getElementById('sa-search'):document.getElementById('sa-placeid')).focus({preventScroll:true});},500);
+  });
+  var stand=document.getElementById('stand');
+  if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var stage=stand.parentNode.parentNode;
+    stage.addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect();
+      var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      stand.style.setProperty('--ry',(-14+x*16).toFixed(2)+'deg'); stand.style.setProperty('--rx',(6-y*10).toFixed(2)+'deg');});
+    stage.addEventListener('pointerleave',function(){stand.style.removeProperty('--ry');stand.style.removeProperty('--rx');});
+  }
+})();
 </script>
 </body>
 </html>

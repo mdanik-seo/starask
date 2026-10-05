@@ -141,92 +141,89 @@ STAR = "&#9733;"
 HOME_HERO = f"""
 <div class="hero hero-home">
   <div class="hero-copy">
-    <span class="eyebrow">Free review tools for local businesses</span>
-    <h1>Get more Google reviews with one link, one QR code, one card</h1>
-    <p>Customers who are happy rarely leave a review on their own. Give them a link that opens the review box directly, a QR code for your counter, and a card that does the asking for you.</p>
-    <div class="row cta-row">
-      <a class="btn big" href="#tool">Create my review link {icon('arrow')}</a>
-      <a class="btn ghost big" href="google-business-profile-audit/">Audit my profile</a>
-    </div>
-    <ul class="trust">
-      <li>{icon('check')}Free tools</li><li>{icon('check')}No sign-up</li><li>{icon('check')}Works in any country</li>
-    </ul>
-  </div>
-  <div class="mock" aria-hidden="true">
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="screen">
-        <div class="g-top"><span class="g-dot"></span><span class="g-bar"></span></div>
-        <p class="g-name">Harbor Street Coffee</p>
-        <p class="g-sub">Rate and review</p>
-        <div class="g-stars">{''.join(f'<span style="--i:{i}">{STAR}</span>' for i in range(5))}</div>
-        <div class="g-lines"><span></span><span></span><span class="short"></span></div>
-        <div class="g-post">Post</div>
+    <h1>Turn happy customers into Google reviews</h1>
+    <p class="lede">Get a direct review link, a QR code, and a printable counter card for your business. Free, and it takes about a minute.</p>
+    <form class="try" id="try" autocomplete="off">
+      <label for="try-name">Your business name</label>
+      <div class="try-row">
+        <input type="text" id="try-name" maxlength="60" placeholder="Harbor Street Coffee">
+        <button type="submit">Make my card</button>
       </div>
+      <p class="try-note">Free. No sign-up. Works for any business on Google Maps.</p>
+    </form>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <div class="stand" id="stand">
+      <canvas id="hero-card" width="1200" height="1800"></canvas>
+      <span class="shine"></span>
     </div>
-    <div class="mini-card">
-      <p class="mc-name">Harbor Street Coffee</p>
-      <p class="mc-stars">{STAR * 5}</p>
-      <p class="mc-h">Loved your visit?</p>
-      <img src="assets/hero-qr.svg" alt="" width="96" height="96">
-    </div>
-    <div class="toast"><span class="t-ic">{STAR}</span><span><strong>New 5-star review</strong><small>just now</small></span></div>
+    <div class="base"></div>
   </div>
 </div>"""
 
+HERO_JS = """<script>
+(function(){
+  var form=document.getElementById('try'), input=document.getElementById('try-name'), c=document.getElementById('hero-card');
+  var demoUrl=StarAsk.reviewUrl('ChIJN1t_tDeuEmsRUsoyG83frY4');
+  function draw(){StarAsk.drawCard(c,{url:demoUrl,name:input.value.trim()||'Harbor Street Coffee',theme:'sunny'});}
+  var t=null; input.addEventListener('input',function(){clearTimeout(t);t=setTimeout(draw,60);});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(draw);}else{draw();}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('sa-name'); if(input.value.trim()){n.value=input.value.trim();n.dispatchEvent(new Event('input'));}
+    document.getElementById('tool').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){(document.getElementById('sa-search').offsetParent?document.getElementById('sa-search'):document.getElementById('sa-placeid')).focus({preventScroll:true});},500);
+  });
+  var stand=document.getElementById('stand');
+  if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var stage=stand.parentNode.parentNode;
+    stage.addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect();
+      var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      stand.style.setProperty('--ry',(-14+x*16).toFixed(2)+'deg'); stand.style.setProperty('--rx',(6-y*10).toFixed(2)+'deg');});
+    stage.addEventListener('pointerleave',function(){stand.style.removeProperty('--ry');stand.style.removeProperty('--rx');});
+  }
+})();
+</script>"""
+
 HOW = f"""
-<section class="how reveal">
+<section class="how">
   <h2>How it works</h2>
   <ol class="how-steps">
-    <li><span class="how-ic">{icon('search')}</span><span class="how-n">01</span><h3>Find your business</h3><p>Type your business name, or paste your Google Place ID.</p></li>
-    <li><span class="how-ic">{icon('link')}</span><span class="how-n">02</span><h3>Get your link and QR code</h3><p>A direct link that opens your review box, plus a sharp QR code.</p></li>
-    <li><span class="how-ic">{icon('print')}</span><span class="how-n">03</span><h3>Share it and print it</h3><p>Text it after each visit and put the card by the register.</p></li>
+    <li><span class="how-ic">{icon('search')}</span><h3>Find your business</h3><p>Type your business name, or paste your Google Place ID.</p></li>
+    <li><span class="how-ic">{icon('link')}</span><h3>Get your link and QR code</h3><p>One link that opens your review box, and a sharp QR code for print.</p></li>
+    <li><span class="how-ic">{icon('print')}</span><h3>Share it and print it</h3><p>Text the link after each visit and put the card by the register.</p></li>
   </ol>
 </section>"""
 
-BENTO = f"""
-<section class="reveal">
-  <h2>Everything you need to get more reviews</h2>
-  <div class="bento">
-    <a class="tile t-link" href="review-link-generator/">
-      <span class="tile-ic">{icon('link')}</span><h3>Review link generator</h3>
-      <p>One tap opens your review box. Paste it into texts, emails, and receipts.</p>
-      <span class="tile-demo linkbox">search.google.com/local/writereview?placeid=ChIJ&hellip;</span>
+TOOL_ROWS = [("review-link-generator/", "link", "Review link generator", "One tap opens your review box."),
+             ("review-qr-code/", "qr", "QR code generator", "High-resolution and print-ready."),
+             ("review-card/", "card", "Printable review card", "A 4×6 in card in three colors."),
+             ("review-request-templates/", "templates", "Request templates", "Texts and emails with your link in them."),
+             ("google-business-profile-checklist/", "checklist", "Profile checklist", "20 checks for a complete profile."),
+             ("get-more-google-reviews/", "guide", "Review guide", "9 ways to get more reviews, within Google’s rules.")]
+
+TOOLS = (f"""
+<section class="toolset">
+  <h2>Everything for more reviews, in one place</h2>
+  <div class="toolset-grid">
+    <a class="feature" href="google-business-profile-audit/">
+      <span class="score warn" style="--pct:72"><strong>72</strong><span>out of 100</span></span>
+      <span class="feature-copy"><h3>Profile audit</h3><p>Score any Google Business Profile out of 100 and see which fixes matter most. Works for your own business, a competitor, or a client.</p><span class="btn">Audit a profile</span></span>
     </a>
-    <a class="tile t-audit" href="google-business-profile-audit/">
-      <span class="tile-ic">{icon('audit')}</span><h3>Profile audit</h3>
-      <p>Score any Google Business Profile out of 100 and see what to fix first.</p>
-      <span class="tile-demo mini-score"><span class="score warn" style="--pct:72"><strong>72</strong><span>out of 100</span></span></span>
-      <span class="tile-demo bars"><span style="--w:90%"></span><span style="--w:60%"></span><span style="--w:35%"></span></span>
-    </a>
-    <a class="tile t-qr" href="review-qr-code/">
-      <span class="tile-ic">{icon('qr')}</span><h3>QR code</h3><p>High-resolution and print-ready.</p>
-    </a>
-    <a class="tile t-card" href="review-card/">
-      <span class="tile-ic">{icon('card')}</span><h3>Review card</h3><p>A 4&times;6 in card for your counter, in three colors.</p>
-    </a>
-    <a class="tile t-tpl" href="review-request-templates/">
-      <span class="tile-ic">{icon('templates')}</span><h3>Request templates</h3><p>Texts and emails with your link already in them.</p>
-    </a>
-    <a class="tile t-ck" href="google-business-profile-checklist/">
-      <span class="tile-ic">{icon('checklist')}</span><h3>Profile checklist</h3><p>20 checks for a complete profile.</p>
-    </a>
-    <a class="tile t-guide" href="get-more-google-reviews/">
-      <span class="tile-ic">{icon('guide')}</span><h3>Review guide</h3><p>9 ways to get more reviews, within Google&rsquo;s rules.</p>
-    </a>
-  </div>
-</section>"""
+    <ul class="tool-list">"""
+    + "".join(f'<li><a href="{h}"><span class="tl-ic">{icon(i)}</span><span><strong>{t}</strong><span>{d}</span></span></a></li>' for h, i, t, d in TOOL_ROWS)
+    + "</ul></div></section>")
 
 
 def plan(name, price, per, note, feats, cta, featured=False):
     lis = "".join(f"<li>{icon('check')}{f}</li>" for f in feats)
-    badge = '<span class="pill warn">Coming soon</span>' if featured or per else ""
+    badge = '<span class="soon-tag">Coming soon</span>' if per else ""
     return (f'<div class="plan{" featured" if featured else ""}"><div class="plan-top"><h3>{name}</h3>{badge}</div>'
             f'<p class="price"><strong>{price}</strong><span>{per or "forever"}</span></p><p class="muted">{note}</p>'
             f'<ul>{lis}</ul>{cta}</div>')
 
 
-PRICING = ('<section class="reveal"><h2>Simple pricing</h2>'
+PRICING = ('<section class="pricing"><h2>Pricing</h2>'
            '<p class="muted">Every tool on this site is free. Paid plans that ask for reviews automatically are coming soon.</p>'
            '<div class="plans">'
            + plan("Free", "$0", "", "For any business getting started.",
@@ -241,13 +238,6 @@ PRICING = ('<section class="reveal"><h2>Simple pricing</h2>'
                    "Audit reports to share with clients"],
                   '<span class="btn ghost soon" aria-disabled="true">Coming soon</span>')
            + '</div></section>')
-
-REVEAL_JS = """<script>
-(function(){var els=document.querySelectorAll('.reveal');
-if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
-els.forEach(function(e){io.observe(e);});})();
-</script>"""
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -533,19 +523,19 @@ def render(p):
     nav = "".join(
         f'<a href="{rel}{h.strip("/")}/"' + (' aria-current="page"' if h.strip("/") + "/" == p["path"] else "") + f">{esc(t)}</a>"
         for h, t in NAV)
-    sections = "".join(f'<section class="reveal"><h2>{esc(h)}</h2>{body}</section>' for h, body in p["sections"])
+    sections = "".join(f'<section><h2>{esc(h)}</h2>{body}</section>' for h, body in p["sections"])
     is_home = p["path"] == ""
     faq_html = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in p["faq"])
     related = "".join(
         f'<a href="{rel}{x["path"]}">{icon(PAGE_ICON.get(x["path"], "link"), "ic rel-ic")}<strong>{esc(x["h1"])}</strong><span>{esc(x["desc"][:90])}&hellip;</span></a>'
         for x in PAGES if x["path"] and x["path"] != p["path"] and not x.get("utility"))
-    related_block = "" if is_home else f'<section class="reveal"><h2>More free tools and guides</h2><div class="related">{related}</div></section>'
-    hero = HOME_HERO if is_home else (f'<div class="hero"><span class="eyebrow">{esc(p["eyebrow"])}</span>'
-                                      f'<h1>{esc(p["h1"])}</h1><p>{esc(p["intro"])}</p></div>')
+    related_block = "" if is_home else f'<section><h2>More free tools and guides</h2><div class="related">{related}</div></section>'
+    hero = HOME_HERO if is_home else ((f'<div class="hero">'
+                                      f'<h1>{esc(p["h1"])}</h1><p class="lede">{esc(p["intro"])}</p></div>'))
     kind = p.get("tool", True)
     has_tool = kind is True
     is_app = kind is True or kind == "audit"
-    faq_block = f'<section class="reveal"><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
+    faq_block = f'<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
     main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": url,
                     "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": p["desc"]}
@@ -556,12 +546,12 @@ def render(p):
     base_js = f'<script src="{rel}assets/config.js"></script>\n<script src="{rel}assets/places.js"></script>\n'
     if has_tool:
         scripts = (base_js + f'<script src="{rel}assets/qrcode.js"></script>\n<script src="{rel}assets/tool.js"></script>\n'
-                   "<script>StarAsk.mount(document.getElementById('tool'));</script>")
+                   "<script>StarAsk.mount(document.getElementById('tool'));</script>" + (HERO_JS if is_home else ""))
     elif kind == "audit":
         scripts = base_js + f'<script src="{rel}assets/audit.js"></script>\n<script>StarAskAudit.mount(document.getElementById(\'audit\'));</script>'
     else:
         scripts = ""
-    scripts += p.get("extra_js", "") + REVEAL_JS
+    scripts += p.get("extra_js", "")
     schema = [
         main_schema,
         {"@context": "https://schema.org", "@type": "FAQPage",
@@ -581,27 +571,30 @@ def render(p):
 <meta property="og:type" content="website">
 {FONTS}
 <link rel="stylesheet" href="{rel}assets/style.css">
-<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>
-<body>
+<body class="{'has-app' if is_app else 'no-app'}{' home' if is_home else ''}">
+<div class="band">
 <div class="wrap">
 <header class="top">
   <a class="brand" href="{rel or './'}"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
   <nav aria-label="Tools">{nav}</nav>
 </header>
-<main>
 {hero}
+</div>
+</div>
+<main class="wrap">
 {tool_html}
 <div class="content">
-{HOW + BENTO if is_home else ""}
+{HOW + TOOLS if is_home else ""}
 {sections}
 {PRICING if is_home else ""}
 {faq_block}
 {related_block}
 </div>
 </main>
-<footer class="foot">
+<footer class="wrap">
+<div class="foot">
   <div class="foot-brand">
     <a class="brand" href="{rel or './'}"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
     <p>Free Google review tools for local businesses.</p>
@@ -611,9 +604,9 @@ def render(p):
     <div><h4>Guides</h4><a href="{rel}get-more-google-reviews/">Get more reviews</a><a href="{rel}review-request-templates/">Request templates</a><a href="{rel}google-business-profile-checklist/">Profile checklist</a></div>
     <div><h4>StarAsk</h4><a href="{rel}privacy/">Privacy</a></div>
   </div>
-  <p class="foot-bottom">&copy; {datetime.date.today().year} StarAsk &middot; StarAsk is not affiliated with or endorsed by Google.</p>
-</footer>
+  <p class="foot-bottom"><span>&copy; {datetime.date.today().year} StarAsk</span><span>StarAsk is not affiliated with or endorsed by Google.</span></p>
 </div>
+</footer>
 {scripts}
 </body>
 </html>
