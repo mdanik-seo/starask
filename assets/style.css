@@ -21,6 +21,7 @@
   --good:#5fd08e; --bad:#ff7b70; --shadow:#000000; color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
 .wrap{max-width:1000px;margin-inline:auto}
@@ -125,3 +126,13 @@ button.ghost,.btn.ghost{background:var(--surface);color:var(--ink)}
   .cardside canvas{max-width:4in;box-shadow:none;border:0;transform:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}button:hover,.related a:hover{transform:none}}
+
+/* business search */
+.combo{position:relative}
+.results{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:5;list-style:none;margin:0;padding:6px;background:var(--surface);border:2px solid var(--line);border-radius:12px;box-shadow:4px 4px 0 var(--shadow);display:grid;gap:2px;max-height:320px;overflow:auto}
+.results li{display:grid;gap:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+.results li strong{font-weight:700}
+.results li span{font-size:.86rem;color:var(--muted)}
+.results li:hover,.results li[aria-selected="true"]{background:var(--brand-soft)}
+.results li.empty{cursor:default;color:var(--muted)}
+.linkish{background:none!important;border:0!important;box-shadow:none!important;padding:4px 0!important;color:var(--ink)!important;font-weight:600;font-size:.88rem;text-decoration:underline;text-decoration-color:var(--pop);text-decoration-thickness:2px;text-underline-offset:3px;justify-self:start;transform:none!important}

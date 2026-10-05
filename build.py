@@ -119,11 +119,20 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
 TOOL = """
 <div class="tool" id="tool">
   <div class="panel toolform">
+    <div class="field search" data-sa="search" hidden>
+      <label for="sa-search">Find your business</label>
+      <div class="combo">
+        <input type="text" id="sa-search" data-sa="search-input" placeholder="Business name and city, e.g. Joe's Pizza Austin"
+               autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sa-results">
+        <ul class="results" id="sa-results" data-sa="results" role="listbox" hidden></ul>
+      </div>
+      <p class="hint" data-sa="picked" hidden></p>
+    </div>
     <div class="field">
       <label for="sa-name">Business name</label>
       <input type="text" id="sa-name" data-sa="name" value="Harbor Street Coffee" autocomplete="organization">
     </div>
-    <div class="field">
+    <div class="field" data-sa="manual">
       <label for="sa-placeid">Google Place ID</label>
       <input type="text" id="sa-placeid" class="mono" data-sa="placeid" value="ChIJN1t_tDeuEmsRUsoyG83frY4" autocomplete="off" spellcheck="false">
       <details class="howto">
@@ -304,6 +313,24 @@ PAGES = [
         ],
         "extra_js": CHECKLIST_JS,
     },
+    {
+        "path": "privacy/",
+        "tool": False,
+        "utility": True,
+        "title": "Privacy Policy | StarAsk",
+        "desc": "How StarAsk handles your information. The free tools run in your browser and do not send us the details you type.",
+        "eyebrow": "Privacy",
+        "h1": "Privacy policy",
+        "intro": "Short version: the free tools run in your browser, and we don't collect the business details you type into them.",
+        "sections": [
+            ("The free tools", "<p>The review link, QR code, review card, templates, and checklist are built in your browser. The business name and Place ID you enter are not sent to StarAsk. Checklist ticks are saved only in your own browser and you can clear them by clearing your browser data.</p>"),
+            ("Business search", "<p>When you search for your business by name, your search text is sent to Google Maps Platform to find matching places. Google handles that request under the <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Privacy Policy</a>.</p>"),
+            ("Cookies and analytics", "<p>StarAsk does not set advertising cookies. If we add visit analytics, this page will say which service we use and what it records.</p>"),
+            ("Paid plans", "<p>Paid plans are not available yet. When they launch, this page will explain what account and customer data we store, how long we keep it, and how to delete it.</p>"),
+            ("Changes", "<p>We will update this page when anything here changes, and show the date of the latest update below.</p><p class=\"hint\">Last updated: " + TODAY + "</p>"),
+        ],
+        "faq": [],
+    },
 ]
 
 
@@ -322,8 +349,9 @@ def render(p):
     faq_html = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in p["faq"])
     related = "".join(
         f'<a href="{rel}{x["path"]}"><strong>{esc(x["h1"])}</strong><span>{esc(x["desc"][:90])}&hellip;</span></a>'
-        for x in PAGES if x["path"] != p["path"])
+        for x in PAGES if x["path"] != p["path"] and not x.get("utility"))
     has_tool = p.get("tool", True)
+    faq_block = f'<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
     main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": url,
                     "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": p["desc"]}
@@ -331,7 +359,7 @@ def render(p):
                    {"@context": "https://schema.org", "@type": "Article", "headline": p["h1"], "description": p["desc"],
                     "url": url, "dateModified": TODAY, "publisher": {"@type": "Organization", "name": "StarAsk"}})
     tool_html = TOOL if has_tool else ""
-    scripts = (f'<script src="{rel}assets/qrcode.js"></script>\n<script src="{rel}assets/tool.js"></script>\n'
+    scripts = (f'<script src="{rel}assets/config.js"></script>\n<script src="{rel}assets/qrcode.js"></script>\n<script src="{rel}assets/tool.js"></script>\n'
                "<script>StarAsk.mount(document.getElementById('tool'));</script>") if has_tool else ""
     scripts += p.get("extra_js", "")
     schema = [
@@ -370,13 +398,13 @@ def render(p):
 {tool_html}
 <div class="content">
 {sections}
-<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>
+{faq_block}
 <section><h2>More free tools and guides</h2><div class="related">{related}</div></section>
 </div>
 </main>
 <footer class="foot">
   <span>&copy; {datetime.date.today().year} StarAsk</span>
-  <span>StarAsk is not affiliated with or endorsed by Google.</span>
+  <span><a href="{rel}privacy/">Privacy</a> &middot; StarAsk is not affiliated with or endorsed by Google.</span>
 </footer>
 </div>
 {scripts}

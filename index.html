@@ -29,11 +29,20 @@
 
 <div class="tool" id="tool">
   <div class="panel toolform">
+    <div class="field search" data-sa="search" hidden>
+      <label for="sa-search">Find your business</label>
+      <div class="combo">
+        <input type="text" id="sa-search" data-sa="search-input" placeholder="Business name and city, e.g. Joe's Pizza Austin"
+               autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sa-results">
+        <ul class="results" id="sa-results" data-sa="results" role="listbox" hidden></ul>
+      </div>
+      <p class="hint" data-sa="picked" hidden></p>
+    </div>
     <div class="field">
       <label for="sa-name">Business name</label>
       <input type="text" id="sa-name" data-sa="name" value="Harbor Street Coffee" autocomplete="organization">
     </div>
-    <div class="field">
+    <div class="field" data-sa="manual">
       <label for="sa-placeid">Google Place ID</label>
       <input type="text" id="sa-placeid" class="mono" data-sa="placeid" value="ChIJN1t_tDeuEmsRUsoyG83frY4" autocomplete="off" spellcheck="false">
       <details class="howto">
@@ -84,9 +93,10 @@
 </main>
 <footer class="foot">
   <span>&copy; 2026 StarAsk</span>
-  <span>StarAsk is not affiliated with or endorsed by Google.</span>
+  <span><a href="privacy/">Privacy</a> &middot; StarAsk is not affiliated with or endorsed by Google.</span>
 </footer>
 </div>
+<script src="assets/config.js"></script>
 <script src="assets/qrcode.js"></script>
 <script src="assets/tool.js"></script>
 <script>StarAsk.mount(document.getElementById('tool'));</script>
