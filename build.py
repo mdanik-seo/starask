@@ -112,6 +112,143 @@ CHECKLIST_JS = """<script>
 })();
 </script>"""
 
+# Hand-drawn style line icons (24px grid, 2px stroke, round joins), colored by currentColor.
+ICON_PATHS = {
+    "link": '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+    "qr": '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v.01M14 21h.01M17.5 17.5V21H21"/>',
+    "card": '<rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M12 7.2l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/><path d="M9 18h6"/>',
+    "audit": '<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1.2"/>',
+    "templates": '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z"/><path d="M8 8h8M8 11.5h5"/>',
+    "checklist": '<path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"/><path d="M11 6.5h9M11 12.5h9M11 18.5h9"/>',
+    "guide": '<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5z"/>',
+    "search": '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>',
+    "print": '<path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/>',
+    "check": '<path d="M5 12.5l4.5 4.5L19 7"/>',
+    "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
+}
+PAGE_ICON = {"review-qr-code/": "qr", "review-link-generator/": "link", "review-card/": "card",
+             "review-request-templates/": "templates", "google-business-profile-audit/": "audit",
+             "get-more-google-reviews/": "guide", "google-business-profile-checklist/": "checklist"}
+
+
+def icon(name, cls="ic"):
+    return (f'<svg class="{cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON_PATHS[name]}</svg>')
+
+
+STAR = "&#9733;"
+
+HOME_HERO = f"""
+<div class="hero hero-home">
+  <div class="hero-copy">
+    <span class="eyebrow">Free review tools for local businesses</span>
+    <h1>Get more Google reviews with one link, one QR code, one card</h1>
+    <p>Customers who are happy rarely leave a review on their own. Give them a link that opens the review box directly, a QR code for your counter, and a card that does the asking for you.</p>
+    <div class="row cta-row">
+      <a class="btn big" href="#tool">Create my review link {icon('arrow')}</a>
+      <a class="btn ghost big" href="google-business-profile-audit/">Audit my profile</a>
+    </div>
+    <ul class="trust">
+      <li>{icon('check')}Free tools</li><li>{icon('check')}No sign-up</li><li>{icon('check')}Works in any country</li>
+    </ul>
+  </div>
+  <div class="mock" aria-hidden="true">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="g-top"><span class="g-dot"></span><span class="g-bar"></span></div>
+        <p class="g-name">Harbor Street Coffee</p>
+        <p class="g-sub">Rate and review</p>
+        <div class="g-stars">{''.join(f'<span style="--i:{i}">{STAR}</span>' for i in range(5))}</div>
+        <div class="g-lines"><span></span><span></span><span class="short"></span></div>
+        <div class="g-post">Post</div>
+      </div>
+    </div>
+    <div class="mini-card">
+      <p class="mc-name">Harbor Street Coffee</p>
+      <p class="mc-stars">{STAR * 5}</p>
+      <p class="mc-h">Loved your visit?</p>
+      <img src="assets/hero-qr.svg" alt="" width="96" height="96">
+    </div>
+    <div class="toast"><span class="t-ic">{STAR}</span><span><strong>New 5-star review</strong><small>just now</small></span></div>
+  </div>
+</div>"""
+
+HOW = f"""
+<section class="how reveal">
+  <h2>How it works</h2>
+  <ol class="how-steps">
+    <li><span class="how-ic">{icon('search')}</span><span class="how-n">01</span><h3>Find your business</h3><p>Type your business name, or paste your Google Place ID.</p></li>
+    <li><span class="how-ic">{icon('link')}</span><span class="how-n">02</span><h3>Get your link and QR code</h3><p>A direct link that opens your review box, plus a sharp QR code.</p></li>
+    <li><span class="how-ic">{icon('print')}</span><span class="how-n">03</span><h3>Share it and print it</h3><p>Text it after each visit and put the card by the register.</p></li>
+  </ol>
+</section>"""
+
+BENTO = f"""
+<section class="reveal">
+  <h2>Everything you need to get more reviews</h2>
+  <div class="bento">
+    <a class="tile t-link" href="review-link-generator/">
+      <span class="tile-ic">{icon('link')}</span><h3>Review link generator</h3>
+      <p>One tap opens your review box. Paste it into texts, emails, and receipts.</p>
+      <span class="tile-demo linkbox">search.google.com/local/writereview?placeid=ChIJ&hellip;</span>
+    </a>
+    <a class="tile t-audit" href="google-business-profile-audit/">
+      <span class="tile-ic">{icon('audit')}</span><h3>Profile audit</h3>
+      <p>Score any Google Business Profile out of 100 and see what to fix first.</p>
+      <span class="tile-demo mini-score"><span class="score warn" style="--pct:72"><strong>72</strong><span>out of 100</span></span></span>
+      <span class="tile-demo bars"><span style="--w:90%"></span><span style="--w:60%"></span><span style="--w:35%"></span></span>
+    </a>
+    <a class="tile t-qr" href="review-qr-code/">
+      <span class="tile-ic">{icon('qr')}</span><h3>QR code</h3><p>High-resolution and print-ready.</p>
+    </a>
+    <a class="tile t-card" href="review-card/">
+      <span class="tile-ic">{icon('card')}</span><h3>Review card</h3><p>A 4&times;6 in card for your counter, in three colors.</p>
+    </a>
+    <a class="tile t-tpl" href="review-request-templates/">
+      <span class="tile-ic">{icon('templates')}</span><h3>Request templates</h3><p>Texts and emails with your link already in them.</p>
+    </a>
+    <a class="tile t-ck" href="google-business-profile-checklist/">
+      <span class="tile-ic">{icon('checklist')}</span><h3>Profile checklist</h3><p>20 checks for a complete profile.</p>
+    </a>
+    <a class="tile t-guide" href="get-more-google-reviews/">
+      <span class="tile-ic">{icon('guide')}</span><h3>Review guide</h3><p>9 ways to get more reviews, within Google&rsquo;s rules.</p>
+    </a>
+  </div>
+</section>"""
+
+
+def plan(name, price, per, note, feats, cta, featured=False):
+    lis = "".join(f"<li>{icon('check')}{f}</li>" for f in feats)
+    badge = '<span class="pill warn">Coming soon</span>' if featured or per else ""
+    return (f'<div class="plan{" featured" if featured else ""}"><div class="plan-top"><h3>{name}</h3>{badge}</div>'
+            f'<p class="price"><strong>{price}</strong><span>{per or "forever"}</span></p><p class="muted">{note}</p>'
+            f'<ul>{lis}</ul>{cta}</div>')
+
+
+PRICING = ('<section class="reveal"><h2>Simple pricing</h2>'
+           '<p class="muted">Every tool on this site is free. Paid plans that ask for reviews automatically are coming soon.</p>'
+           '<div class="plans">'
+           + plan("Free", "$0", "", "For any business getting started.",
+                  ["Review link and QR code", "Printable review cards", "Profile audit", "Request templates and checklist"],
+                  '<a class="btn ghost" href="#tool">Start free</a>')
+           + plan("Business", "$19", "/month", "For a business that wants reviews on autopilot.",
+                  ["Everything in Free", "Automatic review request emails", "Alerts when a new review comes in",
+                   "Your logo on review cards", "Monthly profile score report"],
+                  '<span class="btn soon" aria-disabled="true">Coming soon</span>', featured=True)
+           + plan("Agency", "$49", "/month", "For marketers who manage clients.",
+                  ["Everything in Business", "Up to 10 client businesses", "White-label cards and reports",
+                   "Audit reports to share with clients"],
+                  '<span class="btn ghost soon" aria-disabled="true">Coming soon</span>')
+           + '</div></section>')
+
+REVEAL_JS = """<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+els.forEach(function(e){io.observe(e);});})();
+</script>"""
+
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800'
@@ -396,15 +533,19 @@ def render(p):
     nav = "".join(
         f'<a href="{rel}{h.strip("/")}/"' + (' aria-current="page"' if h.strip("/") + "/" == p["path"] else "") + f">{esc(t)}</a>"
         for h, t in NAV)
-    sections = "".join(f"<section><h2>{esc(h)}</h2>{body}</section>" for h, body in p["sections"])
+    sections = "".join(f'<section class="reveal"><h2>{esc(h)}</h2>{body}</section>' for h, body in p["sections"])
+    is_home = p["path"] == ""
     faq_html = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in p["faq"])
     related = "".join(
-        f'<a href="{rel}{x["path"]}"><strong>{esc(x["h1"])}</strong><span>{esc(x["desc"][:90])}&hellip;</span></a>'
-        for x in PAGES if x["path"] != p["path"] and not x.get("utility"))
+        f'<a href="{rel}{x["path"]}">{icon(PAGE_ICON.get(x["path"], "link"), "ic rel-ic")}<strong>{esc(x["h1"])}</strong><span>{esc(x["desc"][:90])}&hellip;</span></a>'
+        for x in PAGES if x["path"] and x["path"] != p["path"] and not x.get("utility"))
+    related_block = "" if is_home else f'<section class="reveal"><h2>More free tools and guides</h2><div class="related">{related}</div></section>'
+    hero = HOME_HERO if is_home else (f'<div class="hero"><span class="eyebrow">{esc(p["eyebrow"])}</span>'
+                                      f'<h1>{esc(p["h1"])}</h1><p>{esc(p["intro"])}</p></div>')
     kind = p.get("tool", True)
     has_tool = kind is True
     is_app = kind is True or kind == "audit"
-    faq_block = f'<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
+    faq_block = f'<section class="reveal"><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
     main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": url,
                     "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": p["desc"]}
@@ -420,7 +561,7 @@ def render(p):
         scripts = base_js + f'<script src="{rel}assets/audit.js"></script>\n<script>StarAskAudit.mount(document.getElementById(\'audit\'));</script>'
     else:
         scripts = ""
-    scripts += p.get("extra_js", "")
+    scripts += p.get("extra_js", "") + REVEAL_JS
     schema = [
         main_schema,
         {"@context": "https://schema.org", "@type": "FAQPage",
@@ -440,6 +581,7 @@ def render(p):
 <meta property="og:type" content="website">
 {FONTS}
 <link rel="stylesheet" href="{rel}assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>
 <body>
@@ -449,21 +591,27 @@ def render(p):
   <nav aria-label="Tools">{nav}</nav>
 </header>
 <main>
-<div class="hero">
-  <span class="eyebrow">{esc(p['eyebrow'])}</span>
-  <h1>{esc(p['h1'])}</h1>
-  <p>{esc(p['intro'])}</p>
-</div>
+{hero}
 {tool_html}
 <div class="content">
+{HOW + BENTO if is_home else ""}
 {sections}
+{PRICING if is_home else ""}
 {faq_block}
-<section><h2>More free tools and guides</h2><div class="related">{related}</div></section>
+{related_block}
 </div>
 </main>
 <footer class="foot">
-  <span>&copy; {datetime.date.today().year} StarAsk</span>
-  <span><a href="{rel}privacy/">Privacy</a> &middot; StarAsk is not affiliated with or endorsed by Google.</span>
+  <div class="foot-brand">
+    <a class="brand" href="{rel or './'}"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
+    <p>Free Google review tools for local businesses.</p>
+  </div>
+  <div class="foot-cols">
+    <div><h4>Tools</h4><a href="{rel}review-link-generator/">Review link</a><a href="{rel}review-qr-code/">QR code</a><a href="{rel}review-card/">Review card</a><a href="{rel}google-business-profile-audit/">Profile audit</a></div>
+    <div><h4>Guides</h4><a href="{rel}get-more-google-reviews/">Get more reviews</a><a href="{rel}review-request-templates/">Request templates</a><a href="{rel}google-business-profile-checklist/">Profile checklist</a></div>
+    <div><h4>StarAsk</h4><a href="{rel}privacy/">Privacy</a></div>
+  </div>
+  <p class="foot-bottom">&copy; {datetime.date.today().year} StarAsk &middot; StarAsk is not affiliated with or endorsed by Google.</p>
 </footer>
 </div>
 {scripts}
