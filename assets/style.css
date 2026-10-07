@@ -63,7 +63,7 @@ a{color:inherit;text-decoration-color:var(--teal);text-decoration-thickness:2px;
 
 .top{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:20px 0 0}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.12rem;text-decoration:none;letter-spacing:-.02em}
-.pin{width:32px;height:32px;border-radius:50%;background:var(--brand);display:grid;place-items:center;flex:none;
+.pin{width:34px;height:34px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:none;
   box-shadow:0 0 0 4px rgba(255,197,49,.18),0 0 24px rgba(255,197,49,.55)}
 .pin{color:var(--brand-ink)}
 .pin svg{display:block}

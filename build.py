@@ -570,6 +570,7 @@ def render(p):
 <meta property="og:url" content="{url}">
 <meta property="og:type" content="website">
 {FONTS}
+<link rel="icon" href="{rel}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{rel}assets/style.css">
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>
@@ -577,7 +578,7 @@ def render(p):
 <div class="band">
 <div class="wrap">
 <header class="top">
-  <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3.5 19.5 12 4l8.5 15.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></svg></span>ReviewTent</a>
+  <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3" fill="currentColor"/><path d="M12 6.8l1.4 2.8 3.1.5-2.25 2.2.53 3.1L12 13.9l-2.78 1.5.53-3.1L7.5 10.1l3.1-.5z" fill="#ffc531"/><rect x="9" y="17" width="6" height="1.6" rx=".8" fill="#ffc531"/></svg></span>ReviewTent</a>
   <nav aria-label="Tools">{nav}</nav>
 </header>
 {hero}
@@ -596,7 +597,7 @@ def render(p):
 <footer class="wrap">
 <div class="foot">
   <div class="foot-brand">
-    <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3.5 19.5 12 4l8.5 15.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></svg></span>ReviewTent</a>
+    <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="3" fill="currentColor"/><path d="M12 6.8l1.4 2.8 3.1.5-2.25 2.2.53 3.1L12 13.9l-2.78 1.5.53-3.1L7.5 10.1l3.1-.5z" fill="#ffc531"/><rect x="9" y="17" width="6" height="1.6" rx=".8" fill="#ffc531"/></svg></span>ReviewTent</a>
     <p>Free Google review tools for local businesses.</p>
   </div>
   <div class="foot-cols">
