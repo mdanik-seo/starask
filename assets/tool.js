@@ -5,9 +5,9 @@
 
   var CARD_W = 1200, CARD_H = 1800; // 4x6 in at 300 dpi
   var THEMES = {
-    sunny: { bg: '#ffc531', ink: '#1d1b3a', sub: '#4a3f1c', panel: '#ffffff', star: '#1d1b3a' },
-    ink:   { bg: '#1d1b3a', ink: '#fffaf0', sub: '#c9c5e0', panel: '#ffffff', star: '#ffc531' },
-    paper: { bg: '#fffaf0', ink: '#1d1b3a', sub: '#5b5875', panel: '#ffffff', star: '#ff6b4a' }
+    sunny: { bg: '#ffc531', ink: '#0f1a2b', sub: '#4a3f1c', panel: '#ffffff', star: '#0f1a2b' },
+    ink:   { bg: '#0f1a2b', ink: '#fffaf0', sub: '#c9c5e0', panel: '#ffffff', star: '#ffc531' },
+    paper: { bg: '#fffaf0', ink: '#0f1a2b', sub: '#5b5875', panel: '#ffffff', star: '#ff6b4a' }
   };
 
   function reviewUrl(placeId) {
