@@ -241,8 +241,8 @@ PRICING = ('<section class="pricing"><h2>Pricing</h2>'
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800'
-         '&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800'
+         '&family=Geist+Mono:wght@400;500&display=swap">')
 
 TOOL = """
 <div class="tool" id="tool">

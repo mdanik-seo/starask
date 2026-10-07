@@ -82,10 +82,10 @@
     // business name
     var name = (opts.name || 'Your Business').trim();
     var size = 92;
-    ctx.font = '700 ' + size + 'px "Unbounded", "Arial Black", sans-serif';
+    ctx.font = '700 ' + size + 'px "Geist", "Helvetica Neue", Arial, sans-serif';
     while (ctx.measureText(name).width > CARD_W - 160 && size > 52) {
       size -= 4;
-      ctx.font = '700 ' + size + 'px "Unbounded", "Arial Black", sans-serif';
+      ctx.font = '700 ' + size + 'px "Geist", "Helvetica Neue", Arial, sans-serif';
     }
     var lines = wrapText(ctx, name, CARD_W - 160).slice(0, 2);
 
@@ -103,11 +103,11 @@
     y += 130;
 
     ctx.fillStyle = t.ink;
-    ctx.font = '600 68px "Unbounded", "Arial Black", sans-serif';
+    ctx.font = '600 68px "Geist", "Helvetica Neue", Arial, sans-serif';
     ctx.fillText(opts.headline || 'Loved your visit?', CARD_W / 2, y);
     y += 70;
     ctx.fillStyle = t.sub;
-    ctx.font = '400 46px "Figtree", "Segoe UI", sans-serif';
+    ctx.font = '400 46px "Geist", "Helvetica Neue", Arial, sans-serif';
     ctx.fillText('Scan to leave us a Google review', CARD_W / 2, y);
     y += 60;
 
@@ -119,7 +119,7 @@
     y += panel + 80;
 
     ctx.fillStyle = t.sub;
-    ctx.font = '400 40px "Figtree", "Segoe UI", sans-serif';
+    ctx.font = '400 40px "Geist", "Helvetica Neue", Arial, sans-serif';
     ctx.fillText('Point your phone camera at the code', CARD_W / 2, y);
   }
 

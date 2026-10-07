@@ -7,9 +7,9 @@
   --teal:#2ec4b6; --teal-ink:#0e7d73; --teal-soft:#d9f4f1;
   --good:#0e7d73; --good-soft:#d9f4f1; --bad:#d4462a;
   --night:#0f1a2b; --night-2:#1b2a44; --on-night:#f2f6fb; --on-night-muted:#b8c4d6;
-  --display:"Unbounded","Arial Black",system-ui,sans-serif;
-  --body:"Figtree","Segoe UI",system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --display:"Geist","Helvetica Neue",Arial,sans-serif;
+  --body:"Geist","Helvetica Neue",Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,monospace;
   --r-lg:24px; --r-md:16px; --r-sm:10px;
   --lift:0 1px 0 rgba(15,26,43,.04),0 18px 40px -22px rgba(15,26,43,.28);
   --lift-hi:0 1px 0 rgba(15,26,43,.04),0 30px 60px -28px rgba(15,26,43,.38);
