@@ -1,4 +1,4 @@
-/* StarAsk places: business search and profile lookup.
+/* ReviewTent places: business search and profile lookup.
    Live mode: uses Google Maps Platform when assets/config.js has mapsApiKey.
    Demo mode: add ?demo=1 to any page URL to try search and the audit with made-up sample businesses (no key, no cost).
    API: StarAskPlaces.mode() -> 'live' | 'demo' | 'off'

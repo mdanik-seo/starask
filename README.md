@@ -1,4 +1,4 @@
-# StarAsk
+# ReviewTent
 
 Free Google review tools for local businesses: a review link generator, a QR code generator, a printable review card, review request templates, a Google Business Profile audit, a guide, and a checklist.
 
@@ -23,4 +23,4 @@ Google costs: search uses Autocomplete requests (10,000 free per month). Each au
 
 Any static host works (GitHub Pages, Cloudflare Pages). All links are relative, so the site also works from a sub-path.
 
-StarAsk is not affiliated with or endorsed by Google.
+ReviewTent is not affiliated with or endorsed by Google.

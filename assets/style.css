@@ -1,4 +1,4 @@
-/* StarAsk — "after hours at the counter".
+/* ReviewTent — "after hours at the counter".
    A night-indigo band holds the hero, where a lit review card stands on the counter like a sign in a shop window.
    Below it the page turns to cool daylight paper. Marigold is the star color and the only loud accent. */
 :root{
@@ -65,7 +65,8 @@ a{color:inherit;text-decoration-color:var(--teal);text-decoration-thickness:2px;
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.12rem;text-decoration:none;letter-spacing:-.02em}
 .pin{width:32px;height:32px;border-radius:50%;background:var(--brand);display:grid;place-items:center;flex:none;
   box-shadow:0 0 0 4px rgba(255,197,49,.18),0 0 24px rgba(255,197,49,.55)}
-.pin span{color:var(--brand-ink);font-size:16px;line-height:1}
+.pin{color:var(--brand-ink)}
+.pin svg{display:block}
 .top nav{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)}
 .top nav a{text-decoration:none;font-weight:600;font-size:.9rem;padding:7px 14px;border-radius:999px;color:var(--on-night-muted);transition:color .15s,background .15s}
 .top nav a:hover{color:var(--on-night);background:rgba(255,255,255,.07)}

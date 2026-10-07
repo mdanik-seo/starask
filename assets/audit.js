@@ -1,4 +1,4 @@
-/* StarAsk Google Business Profile audit.
+/* ReviewTent Google Business Profile audit.
    Needs assets/places.js. Scores a profile out of 100 from public Google data and suggests fixes.
    Mount with StarAskAudit.mount(rootElement). */
 (function () {

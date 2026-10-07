@@ -1,4 +1,4 @@
-/* StarAsk review tool: builds a Google review link, QR code, and a printable review card.
+/* ReviewTent review tool: builds a Google review link, QR code, and a printable review card.
    Needs assets/qrcode.js (qrcode-generator, MIT, global `qrcode`) loaded first. Mount with StarAsk.mount(rootElement, {focus:'link'|'qr'|'card'}). */
 (function () {
   'use strict';
@@ -182,7 +182,7 @@
     var canvas = $('[data-sa="card"]');
     var theme = 'sunny', current = '';
 
-    // Links from other StarAsk pages (e.g. the audit) can pass ?placeid=...&name=...
+    // Links from other ReviewTent pages (e.g. the audit) can pass ?placeid=...&name=...
     var qs = new URLSearchParams(location.search);
     if (validPlaceId(qs.get('placeid') || '')) {
       idIn.value = qs.get('placeid');

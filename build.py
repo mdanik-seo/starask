@@ -1,9 +1,9 @@
-"""Builds StarAsk's static pages from one template.
+"""Builds ReviewTent's static pages from one template.
 Run:  python3 build.py   -> writes index.html and each page folder's index.html, plus sitemap.xml.
 Edit page copy in PAGES below; edit shared layout in render()."""
 import json, html, datetime, pathlib
 
-SITE = "https://getstarask.com"
+SITE = "https://reviewtent.com"
 ROOT = pathlib.Path(__file__).parent
 TODAY = datetime.date.today().isoformat()
 
@@ -330,7 +330,7 @@ AUDIT = """
 PAGES = [
     {
         "path": "",
-        "title": "Free Google Review Link, QR Code & Card Generator | StarAsk",
+        "title": "Free Google Review Link, QR Code & Card Generator | ReviewTent",
         "desc": "Create a direct Google review link, a QR code, and a printable review card for your business in under a minute. Free, no sign-up.",
         "eyebrow": "Free review tools for local businesses",
         "h1": "Get more Google reviews with one link, one QR code, one card",
@@ -340,14 +340,14 @@ PAGES = [
             ("Three ways to use it", "<ol class=\"steps\"><li><span><strong>Text or email it</strong> right after a job or visit, while the experience is fresh.</span></li><li><span><strong>Print the QR card</strong> and put it where people wait: the register, tables, or the checkout bag.</span></li><li><span><strong>Add the link</strong> to your receipts, email signature, and thank-you pages.</span></li></ol>"),
         ],
         "faq": [
-            ("Is StarAsk free?", "Yes. The review link, QR code, and printable card are free with no sign-up."),
+            ("Is ReviewTent free?", "Yes. The review link, QR code, and printable card are free with no sign-up."),
             ("Does the link work on phones?", "Yes. It opens the Google review box on iPhone, Android, and desktop. People need to be signed in to a Google account to post a review."),
             ("Can I ask only happy customers for reviews?", "No. Google's rules don't allow filtering who you ask. Send the same link to every customer and let them review honestly."),
         ],
     },
     {
         "path": "review-qr-code/",
-        "title": "Free Google Review QR Code Generator (Print-Ready) | StarAsk",
+        "title": "Free Google Review QR Code Generator (Print-Ready) | ReviewTent",
         "desc": "Make a Google review QR code that opens your review box in one scan. Download a high-resolution PNG or a print-ready review card. Free.",
         "eyebrow": "Google review QR code",
         "h1": "Free Google review QR code generator",
@@ -365,7 +365,7 @@ PAGES = [
     },
     {
         "path": "review-link-generator/",
-        "title": "Google Review Link Generator: Direct Link to Your Review Box | StarAsk",
+        "title": "Google Review Link Generator: Direct Link to Your Review Box | ReviewTent",
         "desc": "Generate a direct Google review link that opens the review box for your business. Copy it into texts, emails, and receipts. Free, no sign-up.",
         "eyebrow": "Google review link generator",
         "h1": "Google review link generator",
@@ -383,7 +383,7 @@ PAGES = [
     },
     {
         "path": "review-card/",
-        "title": "Free Printable Google Review Card with QR Code | StarAsk",
+        "title": "Free Printable Google Review Card with QR Code | ReviewTent",
         "desc": "Design a printable Google review card with your business name and QR code. Choose a color, download a print-ready PNG, and put it by the register.",
         "eyebrow": "Printable review card",
         "h1": "Free printable Google review card",
@@ -400,7 +400,7 @@ PAGES = [
     },
     {
         "path": "review-request-templates/",
-        "title": "Google Review Request Templates (Text & Email) | StarAsk",
+        "title": "Google Review Request Templates (Text & Email) | ReviewTent",
         "desc": "Copy-ready Google review request templates for text messages, emails, receipts, and social posts. Your review link is added automatically.",
         "eyebrow": "Review request templates",
         "h1": "Google review request templates you can copy",
@@ -419,7 +419,7 @@ PAGES = [
     {
         "path": "google-business-profile-audit/",
         "tool": "audit",
-        "title": "Free Google Business Profile Audit Tool (Instant Score) | StarAsk",
+        "title": "Free Google Business Profile Audit Tool (Instant Score) | ReviewTent",
         "desc": "Audit any Google Business Profile in seconds. Get a score out of 100 for reviews, rating, photos, hours, and contact details, with the fixes that matter most.",
         "eyebrow": "Free profile audit",
         "h1": "Free Google Business Profile audit",
@@ -446,7 +446,7 @@ PAGES = [
     {
         "path": "get-more-google-reviews/",
         "tool": False,
-        "title": "How to Get More Google Reviews: 9 Methods That Work | StarAsk",
+        "title": "How to Get More Google Reviews: 9 Methods That Work | ReviewTent",
         "desc": "A practical guide to getting more Google reviews for a local business: when to ask, where to ask, what to say, and what Google doesn't allow.",
         "eyebrow": "Guide",
         "h1": "How to get more Google reviews",
@@ -465,7 +465,7 @@ PAGES = [
                 "<li><span><strong>Make it routine.</strong> Ask every customer, every time. Consistent asking beats occasional pushes.</span></li>"
                 "</ol>"),
             ("What Google doesn't allow", "<ul><li>Offering money, discounts, or gifts in exchange for reviews</li><li>Asking only happy customers and steering unhappy ones elsewhere (review gating)</li><li>Writing reviews for your own business, or having staff do it</li><li>Buying reviews or using review exchange groups</li></ul><p>Breaking these rules can get reviews removed or the profile restricted. Asking every customer honestly is both allowed and effective.</p>"),
-            ("Let StarAsk do the asking", "<p>The StarAsk Business plan, coming soon, sends review requests by email automatically after each visit or job and alerts you when a new review needs a reply. Until then, every tool on this site is free.</p><p><a class=\"btn\" href=\"../\">Try the free tools</a></p>"),
+            ("Let ReviewTent do the asking", "<p>The ReviewTent Business plan, coming soon, sends review requests by email automatically after each visit or job and alerts you when a new review needs a reply. Until then, every tool on this site is free.</p><p><a class=\"btn\" href=\"../\">Try the free tools</a></p>"),
         ],
         "faq": [
             ("How many Google reviews do I need?", "There is no fixed number. Aim to match or beat the review count of the top three businesses that rank near you, and keep new reviews coming every month."),
@@ -476,7 +476,7 @@ PAGES = [
     {
         "path": "google-business-profile-checklist/",
         "tool": False,
-        "title": "Google Business Profile Checklist (Free, Interactive) | StarAsk",
+        "title": "Google Business Profile Checklist (Free, Interactive) | ReviewTent",
         "desc": "A free interactive Google Business Profile checklist. Tick off basics, hours, photos, reviews, and activity to make your profile complete.",
         "eyebrow": "Checklist",
         "h1": "Google Business Profile checklist",
@@ -495,15 +495,15 @@ PAGES = [
         "path": "privacy/",
         "tool": False,
         "utility": True,
-        "title": "Privacy Policy | StarAsk",
-        "desc": "How StarAsk handles your information. The free tools run in your browser and do not send us the details you type.",
+        "title": "Privacy Policy | ReviewTent",
+        "desc": "How ReviewTent handles your information. The free tools run in your browser and do not send us the details you type.",
         "eyebrow": "Privacy",
         "h1": "Privacy policy",
         "intro": "Short version: the free tools run in your browser, and we don't collect the business details you type into them.",
         "sections": [
             ("The free tools", "<p>The review link, QR code, review card, templates, and checklist are built in your browser. The business name and Place ID you enter are not sent to StarAsk. Checklist ticks are saved only in your own browser and you can clear them by clearing your browser data.</p>"),
             ("Business search", "<p>When you search for a business by name or run the profile audit, your search text and the chosen business are sent to Google Maps Platform to find matching places. Google handles that request under the <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Google Privacy Policy</a>.</p>"),
-            ("Cookies and analytics", "<p>StarAsk does not set advertising cookies. If we add visit analytics, this page will say which service we use and what it records.</p>"),
+            ("Cookies and analytics", "<p>ReviewTent does not set advertising cookies. If we add visit analytics, this page will say which service we use and what it records.</p>"),
             ("Paid plans", "<p>Paid plans are not available yet. When they launch, this page will explain what account and customer data we store, how long we keep it, and how to delete it.</p>"),
             ("Changes", "<p>We will update this page when anything here changes, and show the date of the latest update below.</p><p class=\"hint\">Last updated: " + TODAY + "</p>"),
         ],
@@ -536,12 +536,12 @@ def render(p):
     has_tool = kind is True
     is_app = kind is True or kind == "audit"
     faq_block = f'<section><h2>Questions</h2><div class="faq">{faq_html}</div></section>' if p["faq"] else ""
-    main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "StarAsk", "url": url,
+    main_schema = ({"@context": "https://schema.org", "@type": "WebApplication", "name": "ReviewTent", "url": url,
                     "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": p["desc"]}
                    if is_app else
                    {"@context": "https://schema.org", "@type": "Article", "headline": p["h1"], "description": p["desc"],
-                    "url": url, "dateModified": TODAY, "publisher": {"@type": "Organization", "name": "StarAsk"}})
+                    "url": url, "dateModified": TODAY, "publisher": {"@type": "Organization", "name": "ReviewTent"}})
     tool_html = TOOL if has_tool else AUDIT.replace("{rel}", rel) if kind == "audit" else ""
     base_js = f'<script src="{rel}assets/config.js"></script>\n<script src="{rel}assets/places.js"></script>\n'
     if has_tool:
@@ -577,7 +577,7 @@ def render(p):
 <div class="band">
 <div class="wrap">
 <header class="top">
-  <a class="brand" href="{rel or './'}"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
+  <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3.5 19.5 12 4l8.5 15.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></svg></span>ReviewTent</a>
   <nav aria-label="Tools">{nav}</nav>
 </header>
 {hero}
@@ -596,15 +596,15 @@ def render(p):
 <footer class="wrap">
 <div class="foot">
   <div class="foot-brand">
-    <a class="brand" href="{rel or './'}"><span class="pin"><span>&#9733;</span></span>StarAsk</a>
+    <a class="brand" href="{rel or './'}"><span class="pin"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3.5 19.5 12 4l8.5 15.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></svg></span>ReviewTent</a>
     <p>Free Google review tools for local businesses.</p>
   </div>
   <div class="foot-cols">
     <div><h4>Tools</h4><a href="{rel}review-link-generator/">Review link</a><a href="{rel}review-qr-code/">QR code</a><a href="{rel}review-card/">Review card</a><a href="{rel}google-business-profile-audit/">Profile audit</a></div>
     <div><h4>Guides</h4><a href="{rel}get-more-google-reviews/">Get more reviews</a><a href="{rel}review-request-templates/">Request templates</a><a href="{rel}google-business-profile-checklist/">Profile checklist</a></div>
-    <div><h4>StarAsk</h4><a href="{rel}privacy/">Privacy</a></div>
+    <div><h4>ReviewTent</h4><a href="{rel}privacy/">Privacy</a></div>
   </div>
-  <p class="foot-bottom"><span>&copy; {datetime.date.today().year} StarAsk</span><span>StarAsk is not affiliated with or endorsed by Google.</span></p>
+  <p class="foot-bottom"><span>&copy; {datetime.date.today().year} ReviewTent</span><span>ReviewTent is not affiliated with or endorsed by Google.</span></p>
 </div>
 </footer>
 {scripts}
